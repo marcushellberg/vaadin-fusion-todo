@@ -11,3 +11,9 @@ A sample app that uses Vaadin's new type-safe communication between a Spring Boo
 ```
 mvn spring-boot:run
 ``` 
+Frontend changes are picked up directly. Backend changes need to be built, your IDE may do this automatically on save. 
+
+
+## Project structure
+Frontend files are in `./frontend`
+Backend files are in `./src/main/java/com/example/application`
