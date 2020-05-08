@@ -6,9 +6,9 @@ import Todo from "../generated/com/example/application/backend/Todo";
 
 @customElement("todo-view")
 export class TodoView extends LitElement {
-  @property()
+  @property({ type: String })
   private task = "";
-  @property()
+  @property({ type: Array })
   private todos: Todo[] = [];
 
   protected render() {
@@ -18,9 +18,7 @@ export class TodoView extends LitElement {
       <div class="form">
         <vaadin-text-field
           .value=${this.task}
-          @change=${(e: { target: HTMLInputElement }) => {
-            this.task = e.target.value;
-          }}
+          @change=${this.updateTask}
         ></vaadin-text-field>
         <vaadin-button @click=${this.add}>Add</vaadin-button>
       </div>
@@ -42,6 +40,10 @@ export class TodoView extends LitElement {
 
   async firstUpdated() {
     this.todos = await getTodos();
+  }
+
+  updateTask(e: { target: HTMLInputElement }) {
+    this.task = e.target.value;
   }
 
   async add() {
