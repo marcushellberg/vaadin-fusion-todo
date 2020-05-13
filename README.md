@@ -2,6 +2,9 @@
 
 A sample app that uses Vaadin's new type-safe communication between a Spring Boot backend and a LitElement + TypeScript frontend.
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/marcushellberg/vaadin-typescript-todo)
+
+
 Try adding a field in the `Todo.java` file, and notice how it becomes available in the TypeScript API automatically.
 
 ## Requirements
