@@ -6,7 +6,6 @@ This app uses Vaadin's new type-safe communication between a Spring Boot backend
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/marcushellberg/vaadin-typescript-todo)
 
-
 Try adding a field in the `Todo.java` file, and notice how it becomes available in the TypeScript API automatically.
 
 ## Requirements
@@ -31,5 +30,5 @@ Backend files are in `./src/main/java/com/example/application`
 - [React todo](https://github.com/marcushellberg/react-todo)
 - [Angular todo](https://github.com/marcushellberg/angular-todo)
 - [Vaadin TypeScript todo](https://github.com/marcushellberg/vaadin-typescript-todo)
-- [Vaadin Java Todo](https://github.com/marcushellberg/vadin-java-todo)
+- [Vaadin Java Todo](https://github.com/marcushellberg/vaadin-java-todo)
 - [Todo REST API](https://github.com/marcushellberg/todo-api)
