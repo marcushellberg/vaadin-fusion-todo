@@ -1,15 +1,30 @@
-import { LitElement, html, property, customElement } from "lit-element";
+import { LitElement, html, property, customElement, css } from "lit-element";
 import "@vaadin/vaadin-text-field";
 import "@vaadin/vaadin-button";
-import { addTodo, deleteTodo, getTodos } from "../generated/TodoService";
+import { saveTodo, deleteTodo, getTodos } from "../generated/TodoService";
 import Todo from "../generated/com/example/application/backend/Todo";
+import { Binder, field } from "@vaadin/flow-frontend/form";
+import TodoModel from "../generated/com/example/application/backend/TodoModel";
 
 @customElement("todo-view")
 export class TodoView extends LitElement {
-  @property({ type: String })
-  private task = "";
   @property({ type: Array })
   private todos: Todo[] = [];
+  private binder = new Binder(this, TodoModel);
+
+  static styles = css`
+    :host {
+      margin: var(--lumo-space-m);
+      display: block;
+    }
+
+    .form {
+      display: inline-grid;
+      gap: var(--lumo-space-m);
+      grid-template-columns: 3fr 1fr;
+      align-items: baseline;
+    }
+  `;
 
   protected render() {
     return html`
@@ -17,8 +32,8 @@ export class TodoView extends LitElement {
 
       <div class="form">
         <vaadin-text-field
-          .value=${this.task}
-          @change=${this.updateTask}
+          label="Task"
+          ...=${field(this.binder.model.task)}
         ></vaadin-text-field>
         <vaadin-button @click=${this.add}>Add</vaadin-button>
       </div>
@@ -42,14 +57,12 @@ export class TodoView extends LitElement {
     this.todos = await getTodos();
   }
 
-  updateTask(e: { target: HTMLInputElement }) {
-    this.task = e.target.value;
-  }
-
   async add() {
-    const todo = await addTodo(this.task);
-    this.todos = [...this.todos, todo];
-    this.task = "";
+    const saved = await this.binder.submitTo(saveTodo);
+    if (saved) {
+      this.todos = [...this.todos, saved];
+      this.binder.clear();
+    }
   }
 
   async clear(id: any) {

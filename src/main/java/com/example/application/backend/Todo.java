@@ -1,24 +1,29 @@
 package com.example.application.backend;
 
-import java.util.UUID;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
+@Entity
 public class Todo {
-  private UUID id;
+
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  @NotEmpty(message = "Task cannot be empty")
   private String task;
 
-  public Todo(){}
+  public Todo() {
+  }
 
   public Todo(String task) {
-    this.setId(UUID.randomUUID());
     this.setTask(task);
   }
 
-  public UUID getId() {
+  public Long getId() {
     return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
   }
 
   public String getTask() {
