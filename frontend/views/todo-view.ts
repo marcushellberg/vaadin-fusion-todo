@@ -1,9 +1,9 @@
 import { LitElement, html, property, customElement, css } from "lit-element";
 import "@vaadin/vaadin-text-field";
 import "@vaadin/vaadin-button";
+import { Binder, field } from "@vaadin/flow-frontend/form";
 import { saveTodo, deleteTodo, getTodos } from "../generated/TodoService";
 import Todo from "../generated/com/example/application/backend/Todo";
-import { Binder, field } from "@vaadin/flow-frontend/form";
 import TodoModel from "../generated/com/example/application/backend/TodoModel";
 
 @customElement("todo-view")
