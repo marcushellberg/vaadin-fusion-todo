@@ -1,4 +1,10 @@
-import { LitElement, html, property, customElement, css } from "lit-element";
+import {
+  LitElement,
+  html,
+  customElement,
+  css,
+  internalProperty,
+} from "lit-element";
 import "@vaadin/vaadin-text-field";
 import "@vaadin/vaadin-button";
 import { Binder, field } from "@vaadin/flow-frontend/form";
@@ -8,7 +14,7 @@ import TodoModel from "../generated/com/example/application/backend/TodoModel";
 
 @customElement("todo-view")
 export class TodoView extends LitElement {
-  @property({ type: Array })
+  @internalProperty()
   private todos: Todo[] = [];
   private binder = new Binder(this, TodoModel);
 
