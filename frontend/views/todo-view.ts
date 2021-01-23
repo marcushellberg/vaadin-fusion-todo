@@ -8,7 +8,7 @@ import {
 import "@vaadin/vaadin-text-field";
 import "@vaadin/vaadin-button";
 import { Binder, field } from "@vaadin/flow-frontend/form";
-import { saveTodo, deleteTodo, getTodos } from "../generated/TodoService";
+import * as todoService from "../generated/TodoService";
 import Todo from "../generated/com/example/application/backend/Todo";
 import TodoModel from "../generated/com/example/application/backend/TodoModel";
 
@@ -60,11 +60,11 @@ export class TodoView extends LitElement {
   }
 
   async firstUpdated() {
-    this.todos = await getTodos();
+    this.todos = await todoService.getTodos();
   }
 
   async add() {
-    const saved = await this.binder.submitTo(saveTodo);
+    const saved = await this.binder.submitTo(todoService.saveTodo);
     if (saved) {
       this.todos = [...this.todos, saved];
       this.binder.clear();
@@ -72,7 +72,7 @@ export class TodoView extends LitElement {
   }
 
   async clear(id: any) {
-    await deleteTodo(id);
+    await todoService.deleteTodo(id);
     this.todos = this.todos.filter((t) => t.id !== id);
   }
 }

@@ -4,7 +4,7 @@ This is an example app for comparing popular frontend frameworks. You can find t
 
 This app uses Vaadin's new type-safe communication between a Spring Boot backend and a LitElement + TypeScript frontend.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/marcushellberg/vaadin-typescript-todo)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/marcushellberg/vaadin-fusion-todo)
 
 Try adding a field in the `Todo.java` file, and notice how it becomes available in the TypeScript API automatically.
 
@@ -28,7 +28,8 @@ Backend files are in `./src/main/java/com/example/application`
 ## Alternate implementations
 
 - [React todo](https://github.com/marcushellberg/react-todo)
+- [Vue todo](https://github.com/marcushellberg/vue-todo)
 - [Angular todo](https://github.com/marcushellberg/angular-todo)
-- [Vaadin Fusion todo](https://github.com/marcushellberg/vaadin-typescript-todo)
-- [Vaadin Flow Todo](https://github.com/marcushellberg/vaadin-java-todo)
+- [Vaadin Fusion todo](https://github.com/marcushellberg/vaadin-fusion-todo)
+- [Vaadin Flow Todo](https://github.com/marcushellberg/vaadin-flow-todo)
 - [Todo REST API](https://github.com/marcushellberg/todo-api)
