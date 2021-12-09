@@ -1,9 +1,10 @@
 package com.example.application.backend;
 
 import java.util.List;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.fusion.Endpoint;
+import com.vaadin.fusion.Nonnull;
 
-import com.vaadin.flow.server.connect.Endpoint;
-import com.vaadin.flow.server.connect.auth.AnonymousAllowed;
 
 @Endpoint
 @AnonymousAllowed
@@ -14,7 +15,7 @@ public class TodoService {
     this.repo = repo;
   }
 
-  public List<Todo> getTodos() {
+  public @Nonnull List<@Nonnull Todo> getTodos() {
     return repo.findAll();
   }
 

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
+import com.vaadin.fusion.Nonnull;
 
 @Entity
 public class Todo {
@@ -13,10 +14,10 @@ public class Todo {
   private Long id;
 
   @NotEmpty(message = "Task cannot be empty")
+  @Nonnull
   private String task;
 
-  public Todo() {
-  }
+  public Todo() {}
 
   public Todo(String task) {
     this.setTask(task);

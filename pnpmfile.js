@@ -8,8 +8,6 @@
 
 const fs = require('fs');
 
-const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
-
 const versionsFile = require('path').resolve(__dirname, 'target/frontend/versions.json');
 
 if (!fs.existsSync(versionsFile)) {
@@ -24,8 +22,8 @@ module.exports = {
 };
 
 function readPackage(pkg) {
-  const {dependencies} = pkg;
-  
+  const { dependencies } = pkg;
+
   if (dependencies) {
     for (let k in versions) {
       if (dependencies[k] && dependencies[k] !== versions[k]) {

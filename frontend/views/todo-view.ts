@@ -1,20 +1,15 @@
-import {
-  LitElement,
-  html,
-  customElement,
-  css,
-  internalProperty,
-} from "lit-element";
+import { LitElement, css, html } from "lit";
+import { state, customElement } from "lit/decorators.js";
 import "@vaadin/vaadin-text-field";
 import "@vaadin/vaadin-button";
-import { Binder, field } from "@vaadin/flow-frontend/form";
-import * as todoService from "../generated/TodoService";
 import Todo from "../generated/com/example/application/backend/Todo";
 import TodoModel from "../generated/com/example/application/backend/TodoModel";
+import { TodoService } from "../generated/endpoints";
+import { Binder, field } from "@vaadin/form";
 
 @customElement("todo-view")
 export class TodoView extends LitElement {
-  @internalProperty()
+  @state()
   private todos: Todo[] = [];
   private binder = new Binder(this, TodoModel);
 
@@ -39,7 +34,7 @@ export class TodoView extends LitElement {
       <div class="form">
         <vaadin-text-field
           label="Task"
-          ...=${field(this.binder.model.task)}
+          ${field(this.binder.model.task)}
         ></vaadin-text-field>
         <vaadin-button @click=${this.add}>Add</vaadin-button>
       </div>
@@ -60,11 +55,11 @@ export class TodoView extends LitElement {
   }
 
   async firstUpdated() {
-    this.todos = await todoService.getTodos();
+    this.todos = await TodoService.getTodos();
   }
 
   async add() {
-    const saved = await this.binder.submitTo(todoService.saveTodo);
+    const saved = await this.binder.submitTo(TodoService.saveTodo);
     if (saved) {
       this.todos = [...this.todos, saved];
       this.binder.clear();
@@ -72,7 +67,7 @@ export class TodoView extends LitElement {
   }
 
   async clear(id: any) {
-    await todoService.deleteTodo(id);
+    await TodoService.deleteTodo(id);
     this.todos = this.todos.filter((t) => t.id !== id);
   }
 }
